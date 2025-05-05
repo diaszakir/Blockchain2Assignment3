@@ -49,8 +49,8 @@ def create_qa_chain(vectorstore, model_name="llama3", prompt_template=DEFAULT_PR
         
         # Create prompt
         prompt = PromptTemplate(
-            input_variables=["context", "query"],
-            template=prompt_template
+          input_variables=["context", "query"],
+          template=prompt_template
         )
         
         # Create chain

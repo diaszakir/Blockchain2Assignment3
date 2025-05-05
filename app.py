@@ -27,7 +27,7 @@ if "constitution_loaded" not in st.session_state:
     st.session_state.constitution_loaded = False
 
 # App title and description
-st.title("🇰🇿 Kazakhstan Constitution AI Assistant")
+st.title("Kazakhstan Constitution AI Assistant")
 st.markdown("""
 This AI assistant can answer questions about the Constitution of the Republic of Kazakhstan 
 and any additional documents you upload. The assistant uses vector search technology to find 
@@ -114,7 +114,7 @@ if prompt := st.chat_input("Ask a question about the Constitution or uploaded do
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
-                    response = st.session_state.qa_chain.invoke({"query": prompt})
+                    response = st.session_state.qa_chain.invoke({"question": prompt})
                     answer = response['result']
                     st.markdown(answer)
 
