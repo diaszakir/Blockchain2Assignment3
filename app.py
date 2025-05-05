@@ -49,7 +49,7 @@ with st.sidebar:
                     else:
                         st.session_state.vectorstore.add_documents(constitution_docs)
                     
-                    st.session_state.qa_chain = create_qa_chain(st.session_state.vectorstore)
+                    st.session_state.qa_chain = create_qa_chain(st.session_state.vectorstore, model_name="mistral")
                     st.session_state.constitution_loaded = True
                     st.success("✅ Constitution loaded successfully!")
                 except Exception as e:
@@ -114,13 +114,14 @@ if prompt := st.chat_input("Ask a question about the Constitution or uploaded do
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
-                    response = st.session_state.qa_chain.invoke({"question": prompt})
-                    answer = response['result']
+                    # Use the chain call directly instead of invoke for correct input handling
+                    response = st.session_state.qa_chain({"query": prompt})
+                    answer = response.get('result') if isinstance(response, dict) else response
                     st.markdown(answer)
 
-                    if "source_documents" in response and response["source_documents"]:
+                    if isinstance(response, dict) and response.get("source_documents"):
                         with st.expander("📚 Sources"):
-                            for i, doc in enumerate(response.get("source_documents", [])):
+                            for i, doc in enumerate(response["source_documents"]):
                                 st.markdown(f"**Source {i+1}:** {doc.metadata.get('source', 'Unknown')}")
                                 st.markdown(f"**Content:** {doc.page_content[:200]}...")
 
@@ -132,6 +133,7 @@ if prompt := st.chat_input("Ask a question about the Constitution or uploaded do
                     error_msg = f"❌ Error generating response: {e}"
                     st.error(error_msg)
                     st.session_state.messages.append({"role": "assistant", "content": error_msg})
+                    print(f"Error during chain call: {e}")
     else:
         with st.chat_message("assistant"):
             msg = "Please load the Constitution or upload documents first."

@@ -4,3 +4,4 @@ requirements.txt
 temp_files/
 temp_uploads/
 vector_db/
+chat_history.csv

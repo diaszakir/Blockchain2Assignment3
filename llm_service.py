@@ -20,18 +20,16 @@ CONTEXT:
 {context}
 
 QUESTION:
-{query}
+{question}
 
 YOUR ANSWER:
 """
 
 def get_available_models():
     """Return a list of available Ollama models"""
-    # You could dynamically fetch available models from Ollama API if desired
-    # For simplicity, we'll just return a list of common ones
     return ["llama3", "llama3:8b", "mistral", "gemma:7b"]
 
-def get_llm(model_name="llama3"):
+def get_llm(model_name="mistral"):
     """Get Ollama LLM instance"""
     try:
         return ChatOllama(model=model_name)
@@ -41,7 +39,7 @@ def get_llm(model_name="llama3"):
         logger.info("Falling back to llama3 model")
         return ChatOllama(model="llama3")
 
-def create_qa_chain(vectorstore, model_name="llama3", prompt_template=DEFAULT_PROMPT_TEMPLATE):
+def create_qa_chain(vectorstore, model_name="mistral", prompt_template=DEFAULT_PROMPT_TEMPLATE):
     """Create a question-answering chain with Ollama LLM and vector store"""
     try:
         # Get LLM
@@ -49,8 +47,8 @@ def create_qa_chain(vectorstore, model_name="llama3", prompt_template=DEFAULT_PR
         
         # Create prompt
         prompt = PromptTemplate(
-          input_variables=["context", "query"],
-          template=prompt_template
+            input_variables=["context", "question"],
+            template=prompt_template
         )
         
         # Create chain
