@@ -1,0 +1,6 @@
+__pycache__/
+db/
+requirements.txt
+temp_files/
+temp_uploads/
+vector_db/
