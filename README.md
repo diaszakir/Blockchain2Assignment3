@@ -60,6 +60,14 @@ This project is a Minimum Viable Product (MVP) of an AI Assistant designed to an
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## Collaborators
+
+Dias Zakir SE-2320
+
+Anvar Tamabayev SE-2320
+
+Danel Kanbakova SE-2320
+
 ## References
 
 1. [RAG with ChromaDB and Ollama](https://medium.com/@arunpatidar26/rag-chromadb-ollama-python-guidefor-beginners-30857499d0a0)
