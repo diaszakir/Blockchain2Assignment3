@@ -49,7 +49,7 @@ with st.sidebar:
                     else:
                         st.session_state.vectorstore.add_documents(constitution_docs)
                     
-                    st.session_state.qa_chain = create_qa_chain(st.session_state.vectorstore, model_name="mistral")
+                    st.session_state.qa_chain = create_qa_chain(st.session_state.vectorstore)
                     st.session_state.constitution_loaded = True
                     st.success("✅ Constitution loaded successfully!")
                 except Exception as e:

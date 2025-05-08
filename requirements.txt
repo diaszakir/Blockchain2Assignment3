@@ -1,0 +1,11 @@
+streamlit
+langchain
+langchain_community
+langchain_ollama
+ollama
+chromadb
+pandas
+python-docx
+pypdf
+beautifulsoup4
+docx2txt

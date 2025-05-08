@@ -29,13 +29,12 @@ def get_available_models():
     """Return a list of available Ollama models"""
     return ["llama3", "llama3:8b", "mistral", "gemma:7b"]
 
-def get_llm(model_name="mistral"):
+def get_llm(model_name="llama3"):
     """Get Ollama LLM instance"""
     try:
         return ChatOllama(model=model_name)
     except Exception as e:
         logger.error(f"Error initializing Ollama LLM {model_name}: {e}")
-        # Fallback to default model
         logger.info("Falling back to llama3 model")
         return ChatOllama(model="llama3")
 
