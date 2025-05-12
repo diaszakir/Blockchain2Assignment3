@@ -3,7 +3,7 @@ from langchain_ollama import OllamaEmbeddings
 
 import os
 
-PERSIST_DIRECTORY = "db"  # Директория для хранения векторной базы
+PERSIST_DIRECTORY = "db"
 
 def create_vector_store(documents, model_name="nomic-embed-text"):
     print(f"🔢 Creating vector store with {len(documents)} chunks...")
