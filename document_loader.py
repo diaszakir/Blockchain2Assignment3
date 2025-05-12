@@ -10,7 +10,6 @@ def load_constitution():
         raise FileNotFoundError(f"File not found")
 
     try:
-        # Определяем загрузчик по расширению
         if CONSTITUTION_FILE.endswith(".pdf"):
             loader = PyPDFLoader(CONSTITUTION_FILE)
         elif CONSTITUTION_FILE.endswith(".docx"):
