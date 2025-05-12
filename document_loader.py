@@ -37,7 +37,6 @@ def load_constitution():
 
 
 def load_and_split_documents(file_paths):
-    """Загрузка документов из разных форматов и разбиение на чанки"""
     documents = []
 
     for path in file_paths:
